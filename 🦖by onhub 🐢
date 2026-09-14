@@ -1,0 +1,416 @@
+-- [[ RED SPAMMING HUB - FINAL VERSION BY NOT_IITIAN ]] --
+-- 🔑 RED KEY SYSTEM + Music (Auto Stop After Verify) + Deadly Animations 🔥
+
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+
+-- ============================================================
+-- 🔑 VALID KEYS
+-- ============================================================
+local VALID_KEYS = {
+    "2090"
+}
+
+-- ============================================================
+-- 🎵 MUSIC SETUP (Key system ke dauran chalega)
+-- ============================================================
+local MusicPlayer = Instance.new("Sound")
+MusicPlayer.SoundId = "rbxassetid://9039851834"
+MusicPlayer.Volume = 0.5
+MusicPlayer.Looped = true
+MusicPlayer.Parent = game:GetService("SoundService")
+MusicPlayer:Play()
+
+-- ============================================================
+-- 🌟 UI CLEANUP
+-- ============================================================
+if CoreGui:FindFirstChild("RedSpammingHub") then
+    CoreGui:FindFirstChild("RedSpammingHub"):Destroy()
+end
+
+-- ============================================================
+-- 🎨 KEY SYSTEM GUI SETUP
+-- ============================================================
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "RedSpammingHub"
+ScreenGui.Parent = CoreGui
+ScreenGui.ResetOnSpawn = false
+
+local Main = Instance.new("Frame")
+Main.Size = UDim2.new(0, 360, 0, 480)
+Main.Position = UDim2.new(0.5, -180, 0.5, -240)
+Main.BackgroundColor3 = Color3.fromRGB(8, 8, 8)
+Main.BorderSizePixel = 0
+Main.Parent = ScreenGui
+Main.Active = true
+Main.Draggable = true
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 12)
+UICorner.Parent = Main
+
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Thickness = 4
+UIStroke.Parent = Main
+
+RunService.RenderStepped:Connect(function()
+    UIStroke.Color = Color3.fromHSV(tick() % 5 / 5, 1, 1)
+end)
+
+local Decal = Instance.new("ImageLabel")
+Decal.Size = UDim2.new(1, 0, 1, 0)
+Decal.BackgroundTransparency = 1
+Decal.Image = "rbxassetid://7214851513"
+Decal.ImageTransparency = 0.3
+Decal.ScaleType = Enum.ScaleType.Crop
+Decal.Parent = Main
+
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.Position = UDim2.new(0, 0, 0, 15)
+Title.BackgroundTransparency = 1
+Title.Text = "🔑 KEY onhub"
+Title.TextColor3 = Color3.fromRGB(255, 0, 0)
+Title.TextSize = 24
+Title.Font = Enum.Font.GothamBlack
+Title.TextStrokeTransparency = 0
+Title.TextStrokeColor3 = Color3.fromRGB(255, 0, 0)
+Title.Parent = Main
+
+RunService.RenderStepped:Connect(function()
+    Title.TextStrokeColor3 = Color3.fromHSV(tick() % 5 / 5, 1, 1)
+end)
+
+local Subtitle = Instance.new("TextLabel")
+Subtitle.Size = UDim2.new(1, 0, 0, 25)
+Subtitle.Position = UDim2.new(0, 0, 0, 70)
+Subtitle.BackgroundTransparency = 1
+Subtitle.Text = "⚡ Key  onhub⚡"
+Subtitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+Subtitle.TextSize = 14
+Subtitle.Font = Enum.Font.GothamBold
+Subtitle.Parent = Main
+
+local InputFrame = Instance.new("Frame")
+InputFrame.Size = UDim2.new(0, 280, 0, 50)
+InputFrame.Position = UDim2.new(0.5, -140, 0, 110)
+InputFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+InputFrame.BorderSizePixel = 0
+InputFrame.Parent = Main
+
+local InputCorner = Instance.new("UICorner")
+InputCorner.CornerRadius = UDim.new(0, 8)
+InputCorner.Parent = InputFrame
+
+local InputStroke = Instance.new("UIStroke")
+InputStroke.Thickness = 2
+InputStroke.Parent = InputFrame
+
+RunService.RenderStepped:Connect(function()
+    InputStroke.Color = Color3.fromHSV(tick() % 5 / 5, 0.5, 1)
+end)
+
+local KeyInput = Instance.new("TextBox")
+KeyInput.Size = UDim2.new(1, -20, 1, -20)
+KeyInput.Position = UDim2.new(0, 10, 0, 10)
+KeyInput.BackgroundTransparency = 1
+KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+KeyInput.PlaceholderText = "🔐 Key onhub"
+KeyInput.Text = ""
+KeyInput.Font = Enum.Font.GothamSemibold
+KeyInput.TextSize = 17
+KeyInput.TextXAlignment = Enum.TextXAlignment.Center
+KeyInput.Parent = InputFrame
+
+local placeholderActive = true
+
+KeyInput.Focused:Connect(function()
+    if placeholderActive then
+        KeyInput.Text = ""
+        placeholderActive = false
+    end
+end)
+
+KeyInput.FocusLost:Connect(function()
+    if KeyInput.Text == "" then
+        placeholderActive = true
+        KeyInput.Text = "🔐 Key onhub"
+        KeyInput.TextColor3 = Color3.fromRGB(150, 150, 150)
+    else
+        KeyInput.TextColor3 = Color3.fromRGB(255, 255, 255)
+    end
+end)
+
+local VerifyBtn = Instance.new("TextButton")
+VerifyBtn.Size = UDim2.new(0, 220, 0, 50)
+VerifyBtn.Position = UDim2.new(0.5, -110, 0, 180)
+VerifyBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+VerifyBtn.Text = "⚡ KEY  onhub⚡"
+VerifyBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+VerifyBtn.Font = Enum.Font.GothamBold
+VerifyBtn.TextSize = 16
+VerifyBtn.Parent = Main
+
+local VerifyCorner = Instance.new("UICorner")
+VerifyCorner.CornerRadius = UDim.new(0, 8)
+VerifyCorner.Parent = VerifyBtn
+
+local pulseTween = TweenService:Create(
+    VerifyBtn,
+    TweenInfo.new(0.6, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true),
+    {
+        Size = UDim2.new(0, 240, 0, 55)
+    }
+)
+pulseTween:Play()
+
+VerifyBtn.MouseEnter:Connect(function()
+    TweenService:Create(
+        VerifyBtn,
+        TweenInfo.new(0.2),
+        {BackgroundColor3 = Color3.fromRGB(0, 255, 0)}
+    ):Play()
+end)
+
+VerifyBtn.MouseLeave:Connect(function()
+    TweenService:Create(
+        VerifyBtn,
+        TweenInfo.new(0.2),
+        {BackgroundColor3 = Color3.fromRGB(0, 170, 0)}
+    ):Play()
+end)
+
+local Status = Instance.new("TextLabel")
+Status.Size = UDim2.new(1, 0, 0, 30)
+Status.Position = UDim2.new(0, 0, 0, 240)
+Status.BackgroundTransparency = 1
+Status.Text = ""
+Status.TextSize = 15
+Status.Font = Enum.Font.GothamBold
+Status.Parent = Main
+
+local DiscordText = Instance.new("TextLabel")
+DiscordText.Size = UDim2.new(1, 0, 0, 25)
+DiscordText.Position = UDim2.new(0, 0, 0, 280)
+DiscordText.BackgroundTransparency = 1
+DiscordText.Text = "🔗 Get Key From Discord:"
+DiscordText.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordText.TextSize = 13
+DiscordText.Font = Enum.Font.GothamMedium
+DiscordText.Parent = Main
+
+local DiscordBtn = Instance.new("TextButton")
+DiscordBtn.Size = UDim2.new(0, 280, 0, 40)
+DiscordBtn.Position = UDim2.new(0.5, -140, 0, 310)
+DiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+DiscordBtn.Text = "📋 COPY DISCORD LINK"
+DiscordBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+DiscordBtn.Font = Enum.Font.GothamBold
+DiscordBtn.TextSize = 14
+DiscordBtn.Parent = Main
+
+local DiscordCorner = Instance.new("UICorner")
+DiscordCorner.CornerRadius = UDim.new(0, 8)
+DiscordCorner.Parent = DiscordBtn
+
+DiscordBtn.MouseButton1Click:Connect(function()
+    setclipboard("https://discord.gg/eQwq3FdZX")
+    DiscordBtn.Text = "✅ COPIED!"
+    task.wait(2)
+    DiscordBtn.Text = "📋 COPY DISCORD LINK"
+end)
+
+local Owner = Instance.new("TextLabel")
+Owner.Size = UDim2.new(1, 0, 0, 25)
+Owner.Position = UDim2.new(0, 0, 0, 360)
+Owner.BackgroundTransparency = 1
+Owner.Text = "by ALi_BOOSS67"
+Owner.TextColor3 = Color3.fromRGB(255, 215, 0)
+Owner.TextSize = 12
+Owner.Font = Enum.Font.GothamBold
+Owner.Parent = Main
+
+-- ============================================================
+-- 💀 DEADLY ANIMATIONS
+-- ============================================================
+local function flashScreen(color)
+    local flash = Instance.new("Frame")
+    flash.Size = UDim2.new(1, 0, 1, 0)
+    flash.BackgroundColor3 = color
+    flash.BackgroundTransparency = 0.8
+    flash.ZIndex = 100
+    flash.Parent = ScreenGui
+
+    TweenService:Create(
+        flash,
+        TweenInfo.new(0.3),
+        {BackgroundTransparency = 1}
+    ):Play()
+
+    task.delay(0.4, function()
+        flash:Destroy()
+    end)
+end
+
+local function shakeScreen()
+    local originalPos = Main.Position
+
+    for i = 1, 8 do
+        Main.Position = originalPos + UDim2.new(
+            0,
+            math.random(-8, 8),
+            0,
+            math.random(-8, 8)
+        )
+        task.wait(0.02)
+    end
+
+    Main.Position = originalPos
+end
+
+local function particleBurst(center)
+    for i = 1, 25 do
+        local particle = Instance.new("Frame")
+        particle.Size = UDim2.new(0, 6, 0, 6)
+        particle.Position = center
+        particle.BackgroundColor3 = Color3.fromHSV(i / 25, 1, 1)
+        particle.ZIndex = 50
+        particle.Parent = ScreenGui
+
+        local target = center + UDim2.new(
+            0,
+            math.random(-250, 250),
+            0,
+            math.random(-250, 250)
+        )
+
+        TweenService:Create(
+            particle,
+            TweenInfo.new(
+                0.8,
+                Enum.EasingStyle.Quad,
+                Enum.EasingDirection.Out
+            ),
+            {
+                Position = target,
+                Rotation = math.random(0, 360),
+                BackgroundTransparency = 1
+            }
+        ):Play()
+
+        task.delay(1, function()
+            particle:Destroy()
+        end)
+    end
+end
+
+-- ============================================================
+-- ✅ VERIFY LOGIC
+-- ============================================================
+local function verifyKey()
+    local inputKey = KeyInput.Text
+    local isValid = false
+
+    for _, key in ipairs(VALID_KEYS) do
+        if inputKey == key then
+            isValid = true
+            break
+        end
+    end
+
+    if isValid then
+        flashScreen(Color3.fromRGB(0, 255, 0))
+        particleBurst(Main.Position + UDim2.new(0, 180, 0, 100))
+
+        Status.Text = "✅ CORRECT KEY! VERIFYING..."
+        Status.TextColor3 = Color3.fromRGB(0, 255, 0)
+
+        VerifyBtn.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        VerifyBtn.Text = "✅ VERIFIED ✅"
+
+        task.wait(1)
+
+        Status.Text = "🚀 SCRIPT LOADING..."
+        Status.TextColor3 = Color3.fromRGB(255, 255, 0)
+        VerifyBtn.Text = "LOADING..."
+
+        local LoadBar = Instance.new("Frame")
+        LoadBar.Size = UDim2.new(0, 280, 0, 10)
+        LoadBar.Position = UDim2.new(0.5, -140, 0, 400)
+        LoadBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+        LoadBar.BorderSizePixel = 0
+        LoadBar.Parent = Main
+
+        local LoadFill = Instance.new("Frame")
+        LoadFill.Size = UDim2.new(0, 0, 1, 0)
+        LoadFill.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        LoadFill.Parent = LoadBar
+
+        TweenService:Create(
+            LoadFill,
+            TweenInfo.new(
+                2,
+                Enum.EasingStyle.Quad,
+                Enum.EasingDirection.Out
+            ),
+            {
+                Size = UDim2.new(1, 0, 1, 0)
+            }
+        ):Play()
+
+        task.wait(2.5)
+
+        -- 🎵 MUSIC BAND KARO
+        MusicPlayer:Stop()
+        MusicPlayer:Destroy()
+
+        -- ====================================================
+        -- 🔥 KEY GUI HIDE/DESTROY FIRST
+        -- ====================================================
+        ScreenGui:Destroy()
+
+        -- انتظار بسيط حتى تختفي واجهة المفتاح بالكامل
+        task.wait(0.15)
+
+        -- ====================================================
+        -- 🔥 LOAD MAIN SCRIPT (RED HUB Shades Upload)
+        -- ====================================================
+        loadstring(game:HttpGet(
+            "https://raw.githubusercontent.com/Sjsysugwu/Fling1/refs/heads/main/steal%20an%20egg"
+        ))()
+
+    else
+        flashScreen(Color3.fromRGB(255, 0, 0))
+        shakeScreen()
+        particleBurst(Main.Position + UDim2.new(0, 180, 0, 100))
+
+        Status.Text = "❌ WRONG KEY! TRY AGAIN"
+        Status.TextColor3 = Color3.fromRGB(255, 0, 0)
+
+        VerifyBtn.BackgroundColor3 = Color3.fromRGB(255, 50, 50)
+        VerifyBtn.Text = "❌ INVALID KEY ❌"
+
+        KeyInput.Text = ""
+        KeyInput.TextColor3 = Color3.fromRGB(150, 150, 150)
+        KeyInput.PlaceholderText = "🔐 Enter Key Here..."
+        placeholderActive = true
+
+        task.wait(1.5)
+
+        VerifyBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+        VerifyBtn.Text = "⚡ VERIFY KEY ⚡"
+        Status.Text = ""
+    end
+end
+
+VerifyBtn.MouseButton1Click:Connect(verifyKey)
+
+KeyInput.FocusLost:Connect(function(enterPressed)
+    if enterPressed then
+        if KeyInput.Text ~= "" and KeyInput.Text ~= "🔐 Enter Key Here..." then
+            verifyKey()
+        end
+    end
+end)
