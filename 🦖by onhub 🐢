@@ -378,7 +378,7 @@ local function verifyKey()
         -- 🔥 LOAD MAIN SCRIPT (RED HUB Shades Upload)
         -- ====================================================
         loadstring(game:HttpGet(
-            "https://raw.githubusercontent.com/Sjsysugwu/Fling1/refs/heads/main/steal%20an%20egg"
+            "https://raw.githubusercontent.com/Sjsysugwu/Fling1/refs/heads/main/steal%20an%20egg%F0%9F%90%A2%F0%9F%90%A2"
         ))()
 
     else
